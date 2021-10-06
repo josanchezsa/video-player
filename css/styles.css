@@ -1,0 +1,80 @@
+@import './buttons.css';
+
+body {
+  background-color: #26b4bc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  /* maximo de ancho */
+  max-inline-size: 900px;
+  /* para centra todo */
+  margin: auto;
+}
+
+.player {
+  margin-block-start: 50px;
+  /* se coloca relative para que los hijos de esta etiqueta solo se puedan mover de manera aboluta dentro de esta etiqueta padre (player)  */
+  position: relative;
+}
+
+.player video {
+  /* para que el video sea responsive */
+  inline-size: 100%;
+  /* sin esto, el video salta y cambia de dimensiones al poner play la primera vez */
+  aspect-ratio: 16/9;
+  /* para que la imagen de poster ocupe todo el espacio en vertical */
+  vertical-align: middle;
+  /* amplia la imagen para cubrir el espacio del padre ya que la imagen de poster tiene proporciones mas pequeñas que el video */
+  object-fit: cover;
+}
+
+.player-title {
+  color: white;
+  position: absolute;
+  /* con inset-block (vertical) e inset-inline (horizontal) se edita la posicion absoluta */
+  inset-block-start: 0;
+  inset-inline-start: 20px;
+}
+
+.player-actions {
+  position: absolute;
+  /* inset en 0 para que ocupe todo el espacio del padre (player), esto solo se puede usar cuando se tiene position: absolute */
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* distancia entre iconos */
+  gap: 20px;
+}
+
+.player-progress {
+  /* background: yellow; */
+  position: absolute;
+  /* para colocar dentro del padre en la parte inferior */
+  inset-block-end: 0;
+  /* para que el div que contiene el input ocupe toda el area de abajo */
+  inset-inline: 0;
+  /* el contenedor debe ser flexible para poder usar flex: 1 en el hijo que ocupe todo el ancho (en lugar de usar inline-size) */
+  display: flex;
+}
+
+.player-progress input {
+  /* para que el input ocupe todo el ancho del padre (player-progress)  */
+  flex: 1;
+}
+
+.player-overlay {
+  position: absolute;
+  /* par aque se expanda por todo el espacio disponible del padre (ancho y alto) */
+  inset: 0;
+  /* que desaparezca */
+  opacity: 0;
+  /* efecto de transicion para mostrar los botones */
+  transition: .3s opacity;
+}
+
+.player:hover .player-overlay{
+  /* que aparezca cuando se haga un hover */
+  opacity: 1;
+}
